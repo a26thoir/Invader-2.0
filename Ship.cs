@@ -7,14 +7,19 @@ public abstract class Ship : Entity
     private Factions faction; // Proper naming convention for private variables is to put an underscore before, i.g _factions
     protected int health;
     protected int damage;
-    protected readonly float shotCoolDown;
+    protected float shotCoolDown;
+    protected float timeSinceShot;
     
     // Constructor
 
-    public Ship(Factions setFaction, int setHealth) // Look up "this"
+    public Ship(Factions setFaction, int setHealth, int setDamage, int setSpeed, float setShotCoolDown) // Look up "this"
     {
         this.faction = setFaction;
         health = setHealth;
+        damage = setDamage;
+        speed = setSpeed;
+        shotCoolDown = setShotCoolDown;
+        timeSinceShot = shotCoolDown;
 
     }
     
@@ -22,10 +27,11 @@ public abstract class Ship : Entity
 
     public override void Update(Scene scene, float deltaTime)
     {
+        timeSinceShot += deltaTime;
         sprite.Position += direction * speed * deltaTime;
     }
 
-    public virtual void Shoot() { }
+    public abstract void Shoot();
 
     public virtual void TakeDamage(int amount) // Health behöver inte skrivas in då alla skepp redan har koll på sin egen health
     {

@@ -12,7 +12,6 @@ public class Explosion : Entity
     public Explosion(Vector2f spawnPosition)
     {
         sprite.Position = spawnPosition;
-        collideable = false;
     }
     
     // Methods

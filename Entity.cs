@@ -5,7 +5,7 @@ public abstract class Entity
     // Fields
 
     protected Sprite sprite;
-    protected bool inactive, collideable;
+    protected bool inactive;
     protected int speed;
     protected Vector2f direction;
     
